@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun&Style - Catálogo</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="user-container">
+            <h1 id="user-display">Bienvenido, <span id="username-text"></span></h1>
+            <button id="add-item-btn">Agregar prenda</button>
+        </div>
+        <div class="add-item-form-container" id="add-item-form">
+            <h2>Agregar nueva prenda</h2>
+            <form action="/add-item" method="post" enctype="multipart/form-data">
+                <input type="text" name="name" placeholder="Nombre de la prenda" required>
+                <textarea name="description" placeholder="Descripción"></textarea>
+                <select name="tags" required>
+                    <option value="" disabled selected>Selecciona una talla</option>
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+                <input type="number" name="price" placeholder="Precio en USD" step="0.01" required>
+                <input type="file" name="image" accept="image/*" required>
+                <button type="submit">Guardar</button>
+            </form>
+        </div>
+    </header>
+
+    <main class="item-grid" id="item-list">
+        <% items.forEach(item => { %>
+            <a href="/item/<%= item.id %>" class="item-card">
+                <img src="/images/<%= item.image %>" alt="<%= item.name %>">
+                <div class="item-info">
+                    <h3><%= item.name %></h3>
+                    <p class="price">$<%= item.price %></p>
+                </div>
+            </a>
+        <% }); %>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/client.js"></script>
+</body>
+</html>

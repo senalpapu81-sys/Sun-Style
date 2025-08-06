@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de <%= item.name %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <a href="/"><h1>Sun&Style</h1></a>
+    </header>
+
+    <main class="item-detail">
+        <div class="item-detail-image">
+            <img src="/images/<%= item.image %>" alt="<%= item.name %>">
+        </div>
+        <div class="item-detail-info">
+            <h2><%= item.name %></h2>
+            <p class="item-description"><%= item.description %></p>
+            <p class="item-tags">Talla: <%= item.tags %></p>
+            <p class="item-price">Precio: **$<%= item.price %>**</p>
+            <div class="code-section">
+                <h3>Código QR</h3>
+                <img src="<%= qrCode %>" alt="Código QR">
+            </div>
+            <div class="code-section">
+                <h3>Código de Barras</h3>
+                <img src="<%= barcode %>" alt="Código de barras">
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/client.js"></script>
+</body>
+</html>
